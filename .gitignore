@@ -17,12 +17,6 @@ build/
 .env.local
 .env.*.local
 
-# Docker
-docker-compose.override.yml
-docker-compose.yml
-Dockerfile
-.dockerignore
-
 # IDE/editor specific files
 .vscode/
 .idea/
