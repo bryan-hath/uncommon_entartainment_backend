@@ -51,7 +51,7 @@ project/
 Create a `.env` file in the project root with the following content:
 
 ```env
-PORT=3000
+PORT=8000
 DB_HOST=db
 DB_USER=root
 DB_PASSWORD=my-secret-pw
@@ -81,7 +81,7 @@ This will start the following services:
 -   **db**: The MySQL database
 -   **migrate**: A one-time migration service to initialize and seed the database
 
-The API should be available at [http://localhost:3000](http://localhost:3000).
+The API should be available at [http://localhost:8000](http://localhost:8000).
 
 ### 3. API Endpoints
 
