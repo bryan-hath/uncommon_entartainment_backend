@@ -7,9 +7,9 @@ This project is a TypeScript-based Node.js application with an Express API, conn
 -   RESTful API using Express with TypeScript
 -   MySQL as the database
 -   Docker Compose setup for easy deployment
--   Database migrations and seed data on first run
 -   Error handling and connection retry mechanism for database initialization
 -   Tests using Jest and Supertest
+-   Mysql data is stored in `mysql_data` folder, You don't need any migration or seed
 
 ## Prerequisites
 
