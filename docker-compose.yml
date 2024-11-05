@@ -24,7 +24,8 @@ services:
         ports:
             - "3306:3306"
         volumes:
-            - db_data:/var/lib/mysql
+            - ./mysql_data:/var/lib/mysql # Project-specific volume for MySQL data
+            - ./migrations:/docker-entrypoint-initdb.d
 
 volumes:
     db_data:

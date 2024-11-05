@@ -1,10 +1,23 @@
 import app from "./app";
-import dotenv from "dotenv";
+import pool from "./utils/database";
+import config from "./config";
 
-dotenv.config();
+const PORT = config.port;
 
-const PORT = process.env.PORT || 3000;
+const startServer = async () => {
+    try {
+        // Check database connection
+        await pool.getConnection();
+        console.log("Successfully connected to the database.");
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+        // Start the server only if the database connection is successful
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}...`);
+        });
+    } catch (error) {
+        console.error("Failed to connect to the database:", error);
+        process.exit(1); // Exit the process if the database connection fails
+    }
+};
+
+startServer();

@@ -1,12 +1,34 @@
-FROM node:latest
+# Stage 1: Build the application
+FROM node:latest AS build
 
+# Set working directory
 WORKDIR /app
 
-COPY package.json ./
+# Copy package.json and package-lock.json to install dependencies
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the application files
 COPY . .
 
+# Compile TypeScript to JavaScript
+RUN npx tsc
+
+# Stage 2: Run the application in a smaller image
+FROM node:alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy only the compiled output and node_modules from the build stage
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package*.json ./
+
+# Expose the application port
 EXPOSE 3000
 
-CMD ["npx", "ts-node", "src/server.ts"]
+# Start the application
+CMD ["node", "dist/server.js"]
