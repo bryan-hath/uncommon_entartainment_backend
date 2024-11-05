@@ -28,7 +28,7 @@ COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/package*.json ./
 
 # Expose the application port
-EXPOSE 3000
+EXPOSE 8000
 
 # Start the application
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/src/server.js"]
